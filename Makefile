@@ -1,4 +1,4 @@
 
 all:
 	g++ *.cpp -std=c++0x -o proj_run
-	./proj_run 7
+	./proj_run

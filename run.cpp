@@ -23,9 +23,10 @@ Runner::Runner()
 {
 	static int amountOfNames = (init(), names.size());
 	_name = names[rand() % amountOfNames];
-	Max_velocity = randomValue(15,30);
-	_stamina = randomValue(25,75);
+	velocity=Max_velocity = randomValue(10,30);
+	_stamina = randomValue(25,50);
 	_clumsiness = randomValue(25,75);
+
 }
 
 string Runner::description()
@@ -37,10 +38,25 @@ string Runner::description()
 		"\n\tRunnerSkill: " + to_string(runnerSkill()) + "\n\t";
 }
 
-
 double Runner::runnerSkill()
 {
 	double skills = 
 		(Max_velocity * _stamina) / (_clumsiness* 1000000.);
 	return skills;
+}
+
+void Runner::Shoot()
+{
+	_isAlive=0;
+}
+
+void Runner::weaken()
+{
+	velocity-=(100-_stamina)/25;
+}
+
+bool Runner::falling()
+{
+	if(rand()%2000<_clumsiness) return 1;
+	else return 0;
 }
